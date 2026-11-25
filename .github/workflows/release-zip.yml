@@ -37,6 +37,7 @@ jobs:
             --exclude='.github' \
             --exclude='.gitignore' \
             --exclude='.distignore' \
+            --exclude='README.md' \
             --exclude='theme_file-structure.txt' \
             --exclude='node_modules' \
             --exclude='*.zip' \

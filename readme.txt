@@ -34,7 +34,7 @@ BungAku-Theme (formerly Mec_Theme) is a modern, flexible WordPress theme for edu
 
 == Installation ==
 
-1. Upload the `mec_theme` folder to the `/wp-content/themes/` directory, or install via WordPress admin.
+1. Upload the `bungaku-theme` folder to the `/wp-content/themes/` directory, or install via WordPress admin.
 2. Activate the theme through the 'Appearance > Themes' menu.
 3. Go to Appearance > Customize to configure your site.
 
