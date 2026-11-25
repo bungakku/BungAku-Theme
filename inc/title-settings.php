@@ -11,53 +11,53 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * theme, so hiding a title never leaves a gap, on any page, not just the
  * site's front page.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 /**
  * Register the Title Settings meta box on Pages (and Posts, since the
  * same need -- a clean title-free layout -- applies there too).
  */
-function mec_theme_add_title_settings_meta_box() {
+function bungaku_theme_add_title_settings_meta_box() {
     add_meta_box(
-        'mec_theme_title_settings',
-        __( 'Title Settings', 'mec_theme' ),
-        'mec_theme_render_title_settings_meta_box',
+        'bungaku_theme_title_settings',
+        __( 'Title Settings', 'bungaku-theme' ),
+        'bungaku_theme_render_title_settings_meta_box',
         array( 'page', 'post' ),
         'side',
         'default'
     );
 }
-add_action( 'add_meta_boxes', 'mec_theme_add_title_settings_meta_box' );
+add_action( 'add_meta_boxes', 'bungaku_theme_add_title_settings_meta_box' );
 
 /**
  * Render the meta box fields.
  */
-function mec_theme_render_title_settings_meta_box( $post ) {
-    wp_nonce_field( 'mec_theme_title_settings_save', 'mec_theme_title_settings_nonce' );
+function bungaku_theme_render_title_settings_meta_box( $post ) {
+    wp_nonce_field( 'bungaku_theme_title_settings_save', 'bungaku_theme_title_settings_nonce' );
 
-    $hide_title = get_post_meta( $post->ID, '_mec_theme_hide_title', true );
-    $alignment  = get_post_meta( $post->ID, '_mec_theme_title_align', true );
+    $hide_title = get_post_meta( $post->ID, '_bungaku_theme_hide_title', true );
+    $alignment  = get_post_meta( $post->ID, '_bungaku_theme_title_align', true );
     if ( ! in_array( $alignment, array( 'left', 'center', 'right' ), true ) ) {
         $alignment = 'left'; // Matches the theme's existing default heading alignment.
     }
     ?>
     <p>
         <label>
-            <input type="checkbox" name="mec_theme_hide_title" value="1" <?php checked( $hide_title, '1' ); ?> />
-            <?php esc_html_e( 'Hide title on this page', 'mec_theme' ); ?>
+            <input type="checkbox" name="bungaku_theme_hide_title" value="1" <?php checked( $hide_title, '1' ); ?> />
+            <?php esc_html_e( 'Hide title on this page', 'bungaku-theme' ); ?>
         </label>
     </p>
     <p>
-        <label for="mec_theme_title_align"><?php esc_html_e( 'Title alignment', 'mec_theme' ); ?></label><br>
-        <select name="mec_theme_title_align" id="mec_theme_title_align" style="width: 100%;">
-            <option value="left" <?php selected( $alignment, 'left' ); ?>><?php esc_html_e( 'Left', 'mec_theme' ); ?></option>
-            <option value="center" <?php selected( $alignment, 'center' ); ?>><?php esc_html_e( 'Center', 'mec_theme' ); ?></option>
-            <option value="right" <?php selected( $alignment, 'right' ); ?>><?php esc_html_e( 'Right', 'mec_theme' ); ?></option>
+        <label for="bungaku_theme_title_align"><?php esc_html_e( 'Title alignment', 'bungaku-theme' ); ?></label><br>
+        <select name="bungaku_theme_title_align" id="bungaku_theme_title_align" style="width: 100%;">
+            <option value="left" <?php selected( $alignment, 'left' ); ?>><?php esc_html_e( 'Left', 'bungaku-theme' ); ?></option>
+            <option value="center" <?php selected( $alignment, 'center' ); ?>><?php esc_html_e( 'Center', 'bungaku-theme' ); ?></option>
+            <option value="right" <?php selected( $alignment, 'right' ); ?>><?php esc_html_e( 'Right', 'bungaku-theme' ); ?></option>
         </select>
     </p>
     <p class="description">
-        <?php esc_html_e( 'Alignment has no effect if the title is hidden. The front page never shows its title, regardless of this setting.', 'mec_theme' ); ?>
+        <?php esc_html_e( 'Alignment has no effect if the title is hidden. The front page never shows its title, regardless of this setting.', 'bungaku-theme' ); ?>
     </p>
     <?php
 }
@@ -73,12 +73,12 @@ function mec_theme_render_title_settings_meta_box( $post ) {
  * Revisions are now skipped, per standard WordPress practice. The nonce is
  * also unslashed and sanitized before wp_verify_nonce().
  */
-function mec_theme_save_title_settings_meta_box( $post_id ) {
+function bungaku_theme_save_title_settings_meta_box( $post_id ) {
     if ( wp_is_post_revision( $post_id ) ) {
         return;
     }
-    if ( ! isset( $_POST['mec_theme_title_settings_nonce'] ) ||
-        ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mec_theme_title_settings_nonce'] ) ), 'mec_theme_title_settings_save' ) ) {
+    if ( ! isset( $_POST['bungaku_theme_title_settings_nonce'] ) ||
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['bungaku_theme_title_settings_nonce'] ) ), 'bungaku_theme_title_settings_save' ) ) {
         return;
     }
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -88,34 +88,34 @@ function mec_theme_save_title_settings_meta_box( $post_id ) {
         return;
     }
 
-    $hide_title = isset( $_POST['mec_theme_hide_title'] ) ? '1' : '0';
-    update_post_meta( $post_id, '_mec_theme_hide_title', $hide_title );
+    $hide_title = isset( $_POST['bungaku_theme_hide_title'] ) ? '1' : '0';
+    update_post_meta( $post_id, '_bungaku_theme_hide_title', $hide_title );
 
-    $alignment = isset( $_POST['mec_theme_title_align'] ) ? sanitize_text_field( wp_unslash( $_POST['mec_theme_title_align'] ) ) : 'left';
+    $alignment = isset( $_POST['bungaku_theme_title_align'] ) ? sanitize_text_field( wp_unslash( $_POST['bungaku_theme_title_align'] ) ) : 'left';
     if ( ! in_array( $alignment, array( 'left', 'center', 'right' ), true ) ) {
         $alignment = 'left';
     }
-    update_post_meta( $post_id, '_mec_theme_title_align', $alignment );
+    update_post_meta( $post_id, '_bungaku_theme_title_align', $alignment );
 }
-add_action( 'save_post', 'mec_theme_save_title_settings_meta_box' );
+add_action( 'save_post', 'bungaku_theme_save_title_settings_meta_box' );
 
 /**
  * Whether the title should be shown for the current post in the loop.
  * Always false on the front page, regardless of the per-page setting.
  */
-function mec_theme_should_show_title() {
+function bungaku_theme_should_show_title() {
     if ( is_front_page() && is_page() ) {
         return false;
     }
-    $hide_title = get_post_meta( get_the_ID(), '_mec_theme_hide_title', true );
+    $hide_title = get_post_meta( get_the_ID(), '_bungaku_theme_hide_title', true );
     return '1' !== $hide_title && '' !== get_the_title();
 }
 
 /**
  * The current post's configured title alignment, as a sanitized CSS value.
  */
-function mec_theme_get_title_align() {
-    $alignment = get_post_meta( get_the_ID(), '_mec_theme_title_align', true );
+function bungaku_theme_get_title_align() {
+    $alignment = get_post_meta( get_the_ID(), '_bungaku_theme_title_align', true );
     if ( ! in_array( $alignment, array( 'left', 'center', 'right' ), true ) ) {
         $alignment = 'left';
     }

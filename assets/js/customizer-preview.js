@@ -1,18 +1,18 @@
 /**
- * Customizer preview enhancements for MEC Theme
+ * Customizer preview enhancements for BungAku-Theme
  * Handles live updates for site description hiding on tablet/mobile,
  * and live updates for tagline alignment.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 (function($, api) {
     'use strict';
 
-    var $style = $('<style id="mec-theme-hide-description-preview"></style>').appendTo('head');
+    var $style = $('<style id="bungaku-theme-hide-description-preview"></style>').appendTo('head');
 
     function updateDescriptionVisibility() {
-        var hideTablet = api('mec_theme_hide_description_tablet').get();
-        var hideMobile = api('mec_theme_hide_description_mobile').get();
+        var hideTablet = api('bungaku_theme_hide_description_tablet').get();
+        var hideMobile = api('bungaku_theme_hide_description_mobile').get();
         var css = '';
 
         if (hideTablet) {
@@ -25,10 +25,10 @@
         $style.html(css);
     }
 
-    api('mec_theme_hide_description_tablet', function(setting) {
+    api('bungaku_theme_hide_description_tablet', function(setting) {
         setting.bind(updateDescriptionVisibility);
     });
-    api('mec_theme_hide_description_mobile', function(setting) {
+    api('bungaku_theme_hide_description_mobile', function(setting) {
         setting.bind(updateDescriptionVisibility);
     });
 
@@ -49,7 +49,7 @@
         document.documentElement.style.setProperty('--mec-tagline-align', value);
     }
 
-    api('mec_theme_tagline_align', function(setting) {
+    api('bungaku_theme_tagline_align', function(setting) {
         updateTaglineAlign(setting.get());
         setting.bind(updateTaglineAlign);
     });

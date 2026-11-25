@@ -1,18 +1,18 @@
 <?php
 /**
- * MEC_Theme functions and definitions
+ * BungAku-Theme functions and definitions
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'MEC_THEME_VERSION', '1.7.98' );
-define( 'MEC_THEME_DIR', get_template_directory() );
-define( 'MEC_THEME_URI', get_template_directory_uri() );
-define( 'MEC_THEME_ASSETS', MEC_THEME_URI . '/assets' );
+define( 'BUNGAKU_THEME_VERSION', '1.7.99' );
+define( 'BUNGAKU_THEME_DIR', get_template_directory() );
+define( 'BUNGAKU_THEME_URI', get_template_directory_uri() );
+define( 'BUNGAKU_THEME_ASSETS', BUNGAKU_THEME_URI . '/assets' );
 
 /**
  * Includes
@@ -23,17 +23,17 @@ define( 'MEC_THEME_ASSETS', MEC_THEME_URI . '/assets' );
  * than called immediately, there is no other ordering dependency between
  * these files. Grouped here for one clear list of "what this theme loads".
  */
-require_once MEC_THEME_DIR . '/inc/class-recent-posts-widget.php';
-require_once MEC_THEME_DIR . '/inc/customizer-sanitizers.php';
-require_once MEC_THEME_DIR . '/inc/customizer-css.php';
-require_once MEC_THEME_DIR . '/inc/customizer.php';
-require_once MEC_THEME_DIR . '/inc/github-updater.php';
-require_once MEC_THEME_DIR . '/inc/title-settings.php';
+require_once BUNGAKU_THEME_DIR . '/inc/class-recent-posts-widget.php';
+require_once BUNGAKU_THEME_DIR . '/inc/customizer-sanitizers.php';
+require_once BUNGAKU_THEME_DIR . '/inc/customizer-css.php';
+require_once BUNGAKU_THEME_DIR . '/inc/customizer.php';
+require_once BUNGAKU_THEME_DIR . '/inc/github-updater.php';
+require_once BUNGAKU_THEME_DIR . '/inc/title-settings.php';
 
 /**
  * Theme Setup
  */
-function mec_theme_setup() {
+function bungaku_theme_setup() {
     add_theme_support( 'automatic-feed-links' );
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
@@ -62,27 +62,27 @@ function mec_theme_setup() {
     
     add_theme_support( 'editor-color-palette', array(
         array(
-            'name'  => esc_html__( 'Primary', 'mec_theme' ),
+            'name'  => esc_html__( 'Primary', 'bungaku-theme' ),
             'slug'  => 'primary',
             'color' => '#0274be',
         ),
         array(
-            'name'  => esc_html__( 'Secondary', 'mec_theme' ),
+            'name'  => esc_html__( 'Secondary', 'bungaku-theme' ),
             'slug'  => 'secondary',
             'color' => '#3a3a3a',
         ),
         array(
-            'name'  => esc_html__( 'Dark Grey', 'mec_theme' ),
+            'name'  => esc_html__( 'Dark Grey', 'bungaku-theme' ),
             'slug'  => 'dark-grey',
             'color' => '#333333',
         ),
         array(
-            'name'  => esc_html__( 'Light Grey', 'mec_theme' ),
+            'name'  => esc_html__( 'Light Grey', 'bungaku-theme' ),
             'slug'  => 'light-grey',
             'color' => '#666666',
         ),
         array(
-            'name'  => esc_html__( 'White', 'mec_theme' ),
+            'name'  => esc_html__( 'White', 'bungaku-theme' ),
             'slug'  => 'white',
             'color' => '#ffffff',
         ),
@@ -90,22 +90,22 @@ function mec_theme_setup() {
     
     add_theme_support( 'editor-font-sizes', array(
         array(
-            'name' => esc_html__( 'Small', 'mec_theme' ),
+            'name' => esc_html__( 'Small', 'bungaku-theme' ),
             'size' => 14,
             'slug' => 'small',
         ),
         array(
-            'name' => esc_html__( 'Normal', 'mec_theme' ),
+            'name' => esc_html__( 'Normal', 'bungaku-theme' ),
             'size' => 16,
             'slug' => 'normal',
         ),
         array(
-            'name' => esc_html__( 'Large', 'mec_theme' ),
+            'name' => esc_html__( 'Large', 'bungaku-theme' ),
             'size' => 20,
             'slug' => 'large',
         ),
         array(
-            'name' => esc_html__( 'Huge', 'mec_theme' ),
+            'name' => esc_html__( 'Huge', 'bungaku-theme' ),
             'size' => 28,
             'slug' => 'huge',
         ),
@@ -114,33 +114,33 @@ function mec_theme_setup() {
     add_theme_support( 'custom-line-height' );
     add_theme_support( 'custom-spacing' );
     
-    add_image_size( 'mec_theme-thumbnail', 300, 200, true );
+    add_image_size( 'bungaku-theme-thumbnail', 300, 200, true );
     
     register_nav_menus( array(
-        'primary' => esc_html__( 'Primary Menu', 'mec_theme' ),
-        'footer'  => esc_html__( 'Footer Menu', 'mec_theme' ),
+        'primary' => esc_html__( 'Primary Menu', 'bungaku-theme' ),
+        'footer'  => esc_html__( 'Footer Menu', 'bungaku-theme' ),
     ) );
     
-    load_theme_textdomain( 'mec_theme', MEC_THEME_DIR . '/languages' );
+    load_theme_textdomain( 'bungaku-theme', BUNGAKU_THEME_DIR . '/languages' );
 }
-add_action( 'after_setup_theme', 'mec_theme_setup' );
+add_action( 'after_setup_theme', 'bungaku_theme_setup' );
 
 /**
  * Set content width
  */
-function mec_theme_content_width() {
-    $GLOBALS['content_width'] = apply_filters( 'mec_theme_content_width', 1140 );
+function bungaku_theme_content_width() {
+    $GLOBALS['content_width'] = apply_filters( 'bungaku_theme_content_width', 1140 );
 }
-add_action( 'after_setup_theme', 'mec_theme_content_width', 0 );
+add_action( 'after_setup_theme', 'bungaku_theme_content_width', 0 );
 
 /**
  * Register Widget Areas
  */
-function mec_theme_widgets_init() {
+function bungaku_theme_widgets_init() {
     register_sidebar( array(
-        'name'          => esc_html__( 'Sidebar', 'mec_theme' ),
+        'name'          => esc_html__( 'Sidebar', 'bungaku-theme' ),
         'id'            => 'sidebar-1',
-        'description'   => esc_html__( 'Main sidebar that appears on posts and pages.', 'mec_theme' ),
+        'description'   => esc_html__( 'Main sidebar that appears on posts and pages.', 'bungaku-theme' ),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h2 class="widget-title">',
@@ -150,10 +150,10 @@ function mec_theme_widgets_init() {
     for ( $i = 1; $i <= 4; $i++ ) {
         register_sidebar( array(
             /* translators: %d: footer widget column number */
-            'name'          => sprintf( esc_html__( 'Footer Widget Area %d', 'mec_theme' ), $i ),
+            'name'          => sprintf( esc_html__( 'Footer Widget Area %d', 'bungaku-theme' ), $i ),
             'id'            => 'footer-' . $i,
             /* translators: %d: footer widget column number */
-            'description'   => sprintf( esc_html__( 'Add widgets for footer column %d.', 'mec_theme' ), $i ),
+            'description'   => sprintf( esc_html__( 'Add widgets for footer column %d.', 'bungaku-theme' ), $i ),
             'before_widget' => '<section id="%1$s" class="widget %2$s">',
             'after_widget'  => '</section>',
             'before_title'  => '<h2 class="widget-title">',
@@ -161,33 +161,33 @@ function mec_theme_widgets_init() {
         ) );
     }
     
-    register_widget( 'MEC_Theme_Recent_Posts_Widget' );
+    register_widget( 'BungAku_Theme_Recent_Posts_Widget' );
 }
-add_action( 'widgets_init', 'mec_theme_widgets_init' );
+add_action( 'widgets_init', 'bungaku_theme_widgets_init' );
 
 /**
  * Enqueue scripts and styles
  */
-function mec_theme_scripts() {
-    wp_enqueue_style( 'mec-theme-style', get_stylesheet_uri(), array(), MEC_THEME_VERSION );
+function bungaku_theme_scripts() {
+    wp_enqueue_style( 'bungaku-theme-style', get_stylesheet_uri(), array(), BUNGAKU_THEME_VERSION );
     
-    $customizer_css = mec_theme_get_cached_customizer_css();
+    $customizer_css = bungaku_theme_get_cached_customizer_css();
     if ( ! empty( $customizer_css ) ) {
-        wp_add_inline_style( 'mec-theme-style', $customizer_css );
+        wp_add_inline_style( 'bungaku-theme-style', $customizer_css );
     }
     
-    wp_enqueue_script( 'mec-theme-navigation', MEC_THEME_URI . '/assets/js/navigation.js', array(), MEC_THEME_VERSION, true );
+    wp_enqueue_script( 'bungaku-theme-navigation', BUNGAKU_THEME_URI . '/assets/js/navigation.js', array(), BUNGAKU_THEME_VERSION, true );
     
-    wp_localize_script( 'mec-theme-navigation', 'mecThemeVars', array(
-        'menuText' => esc_html__( 'Menu', 'mec_theme' ),
-        'closeText' => esc_html__( 'Close', 'mec_theme' ),
+    wp_localize_script( 'bungaku-theme-navigation', 'bungakuThemeVars', array(
+        'menuText' => esc_html__( 'Menu', 'bungaku-theme' ),
+        'closeText' => esc_html__( 'Close', 'bungaku-theme' ),
     ) );
     
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
 }
-add_action( 'wp_enqueue_scripts', 'mec_theme_scripts' );
+add_action( 'wp_enqueue_scripts', 'bungaku_theme_scripts' );
 
 /**
  * Add the theme version to the RTL stylesheet URL (1.7.83).
@@ -200,58 +200,58 @@ add_action( 'wp_enqueue_scripts', 'mec_theme_scripts' );
  * @param string $uri Localized stylesheet URI.
  * @return string
  */
-function mec_theme_locale_stylesheet_version( $uri ) {
-    return $uri ? add_query_arg( 'ver', MEC_THEME_VERSION, $uri ) : $uri;
+function bungaku_theme_locale_stylesheet_version( $uri ) {
+    return $uri ? add_query_arg( 'ver', BUNGAKU_THEME_VERSION, $uri ) : $uri;
 }
-add_filter( 'locale_stylesheet_uri', 'mec_theme_locale_stylesheet_version' );
+add_filter( 'locale_stylesheet_uri', 'bungaku_theme_locale_stylesheet_version' );
 
 /**
  * Enqueue Customizer preview script
  */
-function mec_theme_customize_preview_js() {
+function bungaku_theme_customize_preview_js() {
     if ( is_customize_preview() ) {
-        wp_enqueue_script( 'mec-theme-customizer-preview', MEC_THEME_URI . '/assets/js/customizer-preview.js', array( 'jquery', 'customize-preview' ), MEC_THEME_VERSION, true );
+        wp_enqueue_script( 'bungaku-theme-customizer-preview', BUNGAKU_THEME_URI . '/assets/js/customizer-preview.js', array( 'jquery', 'customize-preview' ), BUNGAKU_THEME_VERSION, true );
     }
 }
-add_action( 'customize_preview_init', 'mec_theme_customize_preview_js' );
+add_action( 'customize_preview_init', 'bungaku_theme_customize_preview_js' );
 
 /**
  * Add custom classes to body
  */
-function mec_theme_body_classes( $classes ) {
+function bungaku_theme_body_classes( $classes ) {
     if ( is_active_sidebar( 'sidebar-1' ) ) {
         $classes[] = 'has-sidebar';
     } else {
         $classes[] = 'no-sidebar';
     }
     
-    $sidebar_position = get_theme_mod( 'mec_theme_sidebar_position', 'right' );
+    $sidebar_position = get_theme_mod( 'bungaku_theme_sidebar_position', 'right' );
     $sidebar_position = sanitize_html_class( $sidebar_position, 'right' );
     $classes[] = 'sidebar-' . $sidebar_position;
     
-    if ( get_theme_mod( 'mec_theme_sticky_header', false ) ) {
+    if ( get_theme_mod( 'bungaku_theme_sticky_header', false ) ) {
         $classes[] = 'has-sticky-header';
     }
     
     return $classes;
 }
-add_filter( 'body_class', 'mec_theme_body_classes' );
+add_filter( 'body_class', 'bungaku_theme_body_classes' );
 
 /**
  * Custom excerpt length
  */
-function mec_theme_excerpt_length( $length ) {
-    return get_theme_mod( 'mec_theme_excerpt_length', 30 );
+function bungaku_theme_excerpt_length( $length ) {
+    return get_theme_mod( 'bungaku_theme_excerpt_length', 30 );
 }
-add_filter( 'excerpt_length', 'mec_theme_excerpt_length' );
+add_filter( 'excerpt_length', 'bungaku_theme_excerpt_length' );
 
 /**
  * Custom excerpt more
  */
-function mec_theme_excerpt_more( $more ) {
+function bungaku_theme_excerpt_more( $more ) {
     return '...';
 }
-add_filter( 'excerpt_more', 'mec_theme_excerpt_more' );
+add_filter( 'excerpt_more', 'bungaku_theme_excerpt_more' );
 
 /**
  * Add menu descriptions
@@ -265,8 +265,8 @@ add_filter( 'excerpt_more', 'mec_theme_excerpt_more' );
  * admin filled in that field. Now gated on the theme mod, matching what the
  * control's label already promised.
  */
-function mec_theme_add_menu_descriptions( $item_output, $item, $depth, $args ) {
-    if ( ! get_theme_mod( 'mec_theme_show_menu_descriptions', false ) ) {
+function bungaku_theme_add_menu_descriptions( $item_output, $item, $depth, $args ) {
+    if ( ! get_theme_mod( 'bungaku_theme_show_menu_descriptions', false ) ) {
         return $item_output;
     }
     if ( ! empty( $item->description ) && in_array( $args->theme_location, array( 'primary', 'footer' ) ) ) {
@@ -274,16 +274,16 @@ function mec_theme_add_menu_descriptions( $item_output, $item, $depth, $args ) {
     }
     return $item_output;
 }
-add_filter( 'walker_nav_menu_start_el', 'mec_theme_add_menu_descriptions', 10, 4 );
+add_filter( 'walker_nav_menu_start_el', 'bungaku_theme_add_menu_descriptions', 10, 4 );
 
 /**
  * Author bio template
  */
-function mec_theme_author_bio() {
+function bungaku_theme_author_bio() {
     if ( ! is_single() ) {
         return;
     }
-    if ( get_theme_mod( 'mec_theme_show_author_bio', true ) ) {
+    if ( get_theme_mod( 'bungaku_theme_show_author_bio', true ) ) {
         get_template_part( 'template-parts/author-bio' );
     }
 }
@@ -291,11 +291,11 @@ function mec_theme_author_bio() {
 /**
  * Related posts template
  */
-function mec_theme_related_posts() {
+function bungaku_theme_related_posts() {
     if ( ! is_single() ) {
         return;
     }
-    if ( get_theme_mod( 'mec_theme_show_related_posts', true ) ) {
+    if ( get_theme_mod( 'bungaku_theme_show_related_posts', true ) ) {
         get_template_part( 'template-parts/related-posts' );
     }
 }
@@ -310,19 +310,19 @@ function mec_theme_related_posts() {
  * need to happen once. Output is byte-for-byte identical to the previous
  * inline code in all three callers.
  */
-function mec_theme_comments_link_markup() {
+function bungaku_theme_comments_link_markup() {
     $comment_count = get_comments_number();
     if ( $comment_count == 0 ) {
-        $comments_text = __( '0 Comments', 'mec_theme' );
-        $screen_reader_text = __( '0 comments', 'mec_theme' );
+        $comments_text = __( '0 Comments', 'bungaku-theme' );
+        $screen_reader_text = __( '0 comments', 'bungaku-theme' );
     } elseif ( $comment_count == 1 ) {
-        $comments_text = __( '1 Comment', 'mec_theme' );
-        $screen_reader_text = __( '1 comment', 'mec_theme' );
+        $comments_text = __( '1 Comment', 'bungaku-theme' );
+        $screen_reader_text = __( '1 comment', 'bungaku-theme' );
     } else {
         /* translators: %s: number of comments */
-        $comments_text = sprintf( __( '%s Comments', 'mec_theme' ), number_format_i18n( $comment_count ) );
+        $comments_text = sprintf( __( '%s Comments', 'bungaku-theme' ), number_format_i18n( $comment_count ) );
         /* translators: %s: number of comments */
-        $screen_reader_text = sprintf( __( '%s comments', 'mec_theme' ), number_format_i18n( $comment_count ) );
+        $screen_reader_text = sprintf( __( '%s comments', 'bungaku-theme' ), number_format_i18n( $comment_count ) );
     }
     ?>
     <a href="<?php comments_link(); ?>">
@@ -338,12 +338,12 @@ function mec_theme_comments_link_markup() {
  * leading "+" for international numbers.
  *
  * Added in 1.7.56 alongside making header.php's phone numbers clickable.
- * Kept as a small standalone helper (matching mec_theme_get_color_var(),
- * mec_theme_get_contrast_color(), etc.) since it's used twice in header.php
+ * Kept as a small standalone helper (matching bungaku_theme_get_color_var(),
+ * bungaku_theme_get_contrast_color(), etc.) since it's used twice in header.php
  * and the display text itself is left untouched -- only the href value
  * needs sanitizing to a dialable format.
  */
-function mec_theme_get_tel_href( $phone ) {
+function bungaku_theme_get_tel_href( $phone ) {
     return preg_replace( '/[^0-9+]/', '', $phone );
 }
 
@@ -357,23 +357,23 @@ remove_action( 'wp_head', 'wlwmanifest_link' );
 /**
  * Check WordPress version
  */
-function mec_theme_version_check() {
+function bungaku_theme_version_check() {
     if ( version_compare( $GLOBALS['wp_version'], '5.0', '<' ) ) {
-        add_action( 'admin_notices', 'mec_theme_upgrade_notice' );
+        add_action( 'admin_notices', 'bungaku_theme_upgrade_notice' );
     }
 }
-add_action( 'after_switch_theme', 'mec_theme_version_check' );
+add_action( 'after_switch_theme', 'bungaku_theme_version_check' );
 
 /**
  * Admin notice for older WordPress versions
  */
-function mec_theme_upgrade_notice() {
+function bungaku_theme_upgrade_notice() {
     if ( ! current_user_can( 'switch_themes' ) ) {
         return;
     }
     ?>
     <div class="notice notice-warning is-dismissible">
-        <p><?php esc_html_e( 'Your WordPress version is outdated. MEC_Theme requires WordPress 5.0 or newer for full functionality.', 'mec_theme' ); ?></p>
+        <p><?php esc_html_e( 'Your WordPress version is outdated. BungAku-Theme requires WordPress 5.0 or newer for full functionality.', 'bungaku-theme' ); ?></p>
     </div>
     <?php
 }

@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * The footer template
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 ?>
@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
     <footer id="colophon" class="site-footer">
         <?php
-        $footer_layout = get_theme_mod( 'mec_theme_footer_layout', '4' );
-        $footer_direction = get_theme_mod( 'mec_theme_footer_direction', 'horizontal' );
+        $footer_layout = get_theme_mod( 'bungaku_theme_footer_layout', '4' );
+        $footer_direction = get_theme_mod( 'bungaku_theme_footer_direction', 'horizontal' );
         
         $footer_columns = absint( $footer_layout );
         if ( $footer_columns < 1 ) {
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <div class="footer-bottom">
                 <div class="copyright">
                     <?php
-                    $copyright_text = get_theme_mod( 'mec_theme_copyright_text', '&copy; ' . date_i18n('Y') . ' ' . get_bloginfo('name') . '. All rights reserved.' );
+                    $copyright_text = get_theme_mod( 'bungaku_theme_copyright_text', '&copy; ' . date_i18n('Y') . ' ' . get_bloginfo('name') . '. All rights reserved.' );
                     
                     echo wp_kses( $copyright_text, array(
                         'a' => array(
@@ -78,11 +78,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 </div>
                 <p class="theme-credit">
                     <?php
-                    $credit_name = '<a href="' . esc_url( 'https://github.com/bungakku' ) . '" target="_blank" rel="noopener noreferrer"><em>' . esc_html__( 'Biswajit', 'mec_theme' ) . '</em></a>';
+                    $credit_name = '<a href="' . esc_url( 'https://github.com/bungakku' ) . '" target="_blank" rel="noopener noreferrer"><em>' . esc_html__( 'Biswajit', 'bungaku-theme' ) . '</em></a>';
                     $credit_html = wp_kses(
                         sprintf(
                             /* translators: %s: linked developer name */
-                            __( 'Theme by %s', 'mec_theme' ),
+                            __( 'Theme by %s', 'bungaku-theme' ),
                             $credit_name
                         ),
                         array(
@@ -94,11 +94,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     ?>
                 </p>
                 <?php
-                echo "\n<!-- mec-theme-build: " . esc_html( substr( hash( 'sha256', $credit_html . '|' . MEC_THEME_VERSION ), 0, 16 ) ) . " -->\n";
+                echo "\n<!-- bungaku-theme-build: " . esc_html( substr( hash( 'sha256', $credit_html . '|' . BUNGAKU_THEME_VERSION ), 0, 16 ) ) . " -->\n";
                 ?>
                 
-                <?php if ( get_theme_mod( 'mec_theme_show_footer_menu', true ) && has_nav_menu( 'footer' ) ) : ?>
-                    <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'mec_theme' ); ?>">
+                <?php if ( get_theme_mod( 'bungaku_theme_show_footer_menu', true ) && has_nav_menu( 'footer' ) ) : ?>
+                    <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'bungaku-theme' ); ?>">
                         <?php
                         wp_nav_menu(
                             array(

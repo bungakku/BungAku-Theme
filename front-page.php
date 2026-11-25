@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * The front page template file
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 get_header(); ?>
@@ -12,8 +12,8 @@ get_header(); ?>
     <div class="content-area <?php echo is_active_sidebar( 'sidebar-1' ) ? 'has-sidebar' : 'no-sidebar'; ?>">
         <main id="primary" class="primary">
             <?php
-            $blog_layout = get_theme_mod( 'mec_theme_blog_layout', 'classic' );
-            $grid_columns = get_theme_mod( 'mec_theme_grid_columns', '2' );
+            $blog_layout = get_theme_mod( 'bungaku_theme_blog_layout', 'classic' );
+            $grid_columns = get_theme_mod( 'bungaku_theme_grid_columns', '2' );
 
             // 1.7.90: a static front page is one page, not a list of posts. In the
             // Grid layout the .blog-grid wrapper put the whole page into a single
@@ -54,8 +54,8 @@ get_header(); ?>
             // page (a single page has only one "page" of results).
             the_posts_pagination( array(
                 'mid_size'  => 2,
-                'prev_text' => '&laquo; ' . __( 'Previous', 'mec_theme' ),
-                'next_text' => __( 'Next', 'mec_theme' ) . ' &raquo;',
+                'prev_text' => '&laquo; ' . __( 'Previous', 'bungaku-theme' ),
+                'next_text' => __( 'Next', 'bungaku-theme' ) . ' &raquo;',
             ) );
             ?>
         </main><!-- #primary -->

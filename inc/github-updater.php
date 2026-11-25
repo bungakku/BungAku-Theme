@@ -3,20 +3,20 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 /**
- * GitHub-based update checker for MEC_Theme.
+ * GitHub-based update checker for BungAku-Theme.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
-if ( ! defined( 'MEC_THEME_GITHUB_OWNER' ) ) {
-    define( 'MEC_THEME_GITHUB_OWNER', 'bungakku' );
+if ( ! defined( 'BUNGAKU_THEME_GITHUB_OWNER' ) ) {
+    define( 'BUNGAKU_THEME_GITHUB_OWNER', 'bungakku' );
 }
-if ( ! defined( 'MEC_THEME_GITHUB_REPO' ) ) {
-    define( 'MEC_THEME_GITHUB_REPO', 'Mec_Theme' );
+if ( ! defined( 'BUNGAKU_THEME_GITHUB_REPO' ) ) {
+    define( 'BUNGAKU_THEME_GITHUB_REPO', 'BungAku-Theme' );
 }
 
-function mec_theme_get_latest_github_release() {
-    $cached = get_site_transient( 'mec_theme_github_release' );
+function bungaku_theme_get_latest_github_release() {
+    $cached = get_site_transient( 'bungaku_theme_github_release' );
     if ( false !== $cached ) {
         // A cached failure is stored as false, but a database-backed transient reads it back as '': only an array is a release.
         return is_array( $cached ) ? $cached : false;
@@ -24,27 +24,27 @@ function mec_theme_get_latest_github_release() {
 
     $api_url = sprintf(
         'https://api.github.com/repos/%s/%s/releases?per_page=20',
-        MEC_THEME_GITHUB_OWNER,
-        MEC_THEME_GITHUB_REPO
+        BUNGAKU_THEME_GITHUB_OWNER,
+        BUNGAKU_THEME_GITHUB_REPO
     );
 
     $response = wp_remote_get( $api_url, array(
         'timeout' => 10,
         'headers' => array(
             'Accept'     => 'application/vnd.github+json',
-            'User-Agent' => 'MEC_Theme-Updater',
+            'User-Agent' => 'BungAku-Theme-Updater',
         ),
     ) );
 
     if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-        set_site_transient( 'mec_theme_github_release', false, HOUR_IN_SECONDS );
+        set_site_transient( 'bungaku_theme_github_release', false, HOUR_IN_SECONDS );
         return false;
     }
 
     $releases = json_decode( wp_remote_retrieve_body( $response ), true );
 
     if ( empty( $releases ) || ! is_array( $releases ) ) {
-        set_site_transient( 'mec_theme_github_release', false, HOUR_IN_SECONDS );
+        set_site_transient( 'bungaku_theme_github_release', false, HOUR_IN_SECONDS );
         return false;
     }
 
@@ -72,7 +72,7 @@ function mec_theme_get_latest_github_release() {
     }
 
     if ( null === $best_release ) {
-        set_site_transient( 'mec_theme_github_release', false, HOUR_IN_SECONDS );
+        set_site_transient( 'bungaku_theme_github_release', false, HOUR_IN_SECONDS );
         return false;
     }
 
@@ -92,12 +92,12 @@ function mec_theme_get_latest_github_release() {
         'changelog_url' => esc_url_raw( ! empty( $best_release['html_url'] ) ? $best_release['html_url'] : '' ),
     );
 
-    set_site_transient( 'mec_theme_github_release', $release, 12 * HOUR_IN_SECONDS );
+    set_site_transient( 'bungaku_theme_github_release', $release, 12 * HOUR_IN_SECONDS );
 
     return $release;
 }
 
-function mec_theme_check_for_update( $transient ) {
+function bungaku_theme_check_for_update( $transient ) {
     if ( empty( $transient->checked ) ) {
         return $transient;
     }
@@ -106,7 +106,7 @@ function mec_theme_check_for_update( $transient ) {
     $stylesheet = get_template();
     $current_version = wp_get_theme( $stylesheet )->get( 'Version' );
 
-    $release = mec_theme_get_latest_github_release();
+    $release = bungaku_theme_get_latest_github_release();
     if ( false === $release ) {
         return $transient;
     }
@@ -114,7 +114,7 @@ function mec_theme_check_for_update( $transient ) {
     $item = array(
         'theme'       => $stylesheet,
         'new_version' => $release['version'],
-        'url'         => $release['changelog_url'] ? $release['changelog_url'] : 'https://github.com/' . MEC_THEME_GITHUB_OWNER . '/' . MEC_THEME_GITHUB_REPO,
+        'url'         => $release['changelog_url'] ? $release['changelog_url'] : 'https://github.com/' . BUNGAKU_THEME_GITHUB_OWNER . '/' . BUNGAKU_THEME_GITHUB_REPO,
         'package'     => $release['download_url'],
     );
 
@@ -128,9 +128,9 @@ function mec_theme_check_for_update( $transient ) {
 
     return $transient;
 }
-add_filter( 'pre_set_site_transient_update_themes', 'mec_theme_check_for_update' );
+add_filter( 'pre_set_site_transient_update_themes', 'bungaku_theme_check_for_update' );
 
-function mec_theme_fix_github_zip_folder_name( $source, $remote_source, $upgrader, $hook_extra ) {
+function bungaku_theme_fix_github_zip_folder_name( $source, $remote_source, $upgrader, $hook_extra ) {
     global $wp_filesystem;
 
     if ( empty( $hook_extra['theme'] ) || get_template() !== $hook_extra['theme'] ) {
@@ -163,17 +163,17 @@ function mec_theme_fix_github_zip_folder_name( $source, $remote_source, $upgrade
 
     return $source;
 }
-add_filter( 'upgrader_source_selection', 'mec_theme_fix_github_zip_folder_name', 10, 4 );
+add_filter( 'upgrader_source_selection', 'bungaku_theme_fix_github_zip_folder_name', 10, 4 );
 
-function mec_theme_clear_github_release_cache() {
-    delete_site_transient( 'mec_theme_github_release' );
+function bungaku_theme_clear_github_release_cache() {
+    delete_site_transient( 'bungaku_theme_github_release' );
 }
-add_action( 'upgrader_process_complete', 'mec_theme_clear_github_release_cache', 10, 0 );
+add_action( 'upgrader_process_complete', 'bungaku_theme_clear_github_release_cache', 10, 0 );
 // Priority 5: core's own wp_update_themes() runs on this hook at priority 10 and is registered earlier, so a later clear came too late for the first "Check again".
-add_action( 'load-update-core.php', 'mec_theme_clear_github_release_cache_on_check_again', 5 );
+add_action( 'load-update-core.php', 'bungaku_theme_clear_github_release_cache_on_check_again', 5 );
 
-function mec_theme_clear_github_release_cache_on_check_again() {
+function bungaku_theme_clear_github_release_cache_on_check_again() {
     if ( isset( $_GET['force-check'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        delete_site_transient( 'mec_theme_github_release' );
+        delete_site_transient( 'bungaku_theme_github_release' );
     }
 }

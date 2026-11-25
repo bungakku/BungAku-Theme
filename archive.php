@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * The template for displaying archive pages
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 get_header();
@@ -23,8 +23,8 @@ get_header();
                 </header><!-- .page-header -->
 
                 <?php
-                $blog_layout = get_theme_mod( 'mec_theme_blog_layout', 'classic' );
-                $grid_columns = get_theme_mod( 'mec_theme_grid_columns', '2' );
+                $blog_layout = get_theme_mod( 'bungaku_theme_blog_layout', 'classic' );
+                $grid_columns = get_theme_mod( 'bungaku_theme_grid_columns', '2' );
 
                 if ( 'grid' === $blog_layout ) {
                     echo '<div class="blog-grid grid-columns-' . esc_attr( $grid_columns ) . '">';
@@ -43,8 +43,8 @@ get_header();
 
                 the_posts_pagination( array(
                     'mid_size'  => 2,
-                    'prev_text' => '&laquo; ' . __( 'Previous', 'mec_theme' ),
-                    'next_text' => __( 'Next', 'mec_theme' ) . ' &raquo;',
+                    'prev_text' => '&laquo; ' . __( 'Previous', 'bungaku-theme' ),
+                    'next_text' => __( 'Next', 'bungaku-theme' ) . ' &raquo;',
                 ) );
 
             else :

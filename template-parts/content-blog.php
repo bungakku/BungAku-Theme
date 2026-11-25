@@ -3,20 +3,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Template part for displaying blog posts with customizable options
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
-$blog_layout = get_theme_mod( 'mec_theme_blog_layout', 'classic' );
-$show_image = get_theme_mod( 'mec_theme_show_featured_image', 'show' );
-$image_size = get_theme_mod( 'mec_theme_featured_image_size', 'large' );
-$content_display = get_theme_mod( 'mec_theme_content_display', 'excerpt' );
-$show_read_more = get_theme_mod( 'mec_theme_show_read_more', true );
-$read_more_text = get_theme_mod( 'mec_theme_read_more_text', 'Read More' );
-$show_meta = get_theme_mod( 'mec_theme_show_post_meta', 'show' );
+$blog_layout = get_theme_mod( 'bungaku_theme_blog_layout', 'classic' );
+$show_image = get_theme_mod( 'bungaku_theme_show_featured_image', 'show' );
+$image_size = get_theme_mod( 'bungaku_theme_featured_image_size', 'large' );
+$content_display = get_theme_mod( 'bungaku_theme_content_display', 'excerpt' );
+$show_read_more = get_theme_mod( 'bungaku_theme_show_read_more', true );
+$read_more_text = get_theme_mod( 'bungaku_theme_read_more_text', 'Read More' );
+$show_meta = get_theme_mod( 'bungaku_theme_show_post_meta', 'show' );
 
 $post_classes = 'blog-post ' . $blog_layout . '-post';
 if ( 'grid' === $blog_layout ) {
-    $grid_columns = get_theme_mod( 'mec_theme_grid_columns', '2' );
+    $grid_columns = get_theme_mod( 'bungaku_theme_grid_columns', '2' );
     $post_classes .= ' grid-column-' . $grid_columns;
 }
 ?>
@@ -34,8 +34,8 @@ if ( 'grid' === $blog_layout ) {
     <div class="entry-content-wrapper">
         <header class="entry-header">
             <?php
-            if ( mec_theme_should_show_title() ) {
-                $title_align_class = ' entry-title--align-' . esc_attr( mec_theme_get_title_align() );
+            if ( bungaku_theme_should_show_title() ) {
+                $title_align_class = ' entry-title--align-' . esc_attr( bungaku_theme_get_title_align() );
                 if ( is_singular() ) {
                     the_title( '<h1 class="entry-title' . $title_align_class . '">', '</h1>' );
                 } else {
@@ -54,10 +54,10 @@ if ( 'grid' === $blog_layout ) {
                 if ( 'hide' === $show_meta ) {
                     $show_date = $show_author = $show_comments = $show_categories = false;
                 } elseif ( 'custom' === $show_meta ) {
-                    $show_date = get_theme_mod( 'mec_theme_show_post_date', true );
-                    $show_author = get_theme_mod( 'mec_theme_show_post_author', true );
-                    $show_comments = get_theme_mod( 'mec_theme_show_post_comments', true );
-                    $show_categories = get_theme_mod( 'mec_theme_show_post_categories', false );
+                    $show_date = get_theme_mod( 'bungaku_theme_show_post_date', true );
+                    $show_author = get_theme_mod( 'bungaku_theme_show_post_author', true );
+                    $show_comments = get_theme_mod( 'bungaku_theme_show_post_comments', true );
+                    $show_categories = get_theme_mod( 'bungaku_theme_show_post_categories', false );
                 }
                 
                 if ( $show_date || $show_author || $show_comments || $show_categories ) : ?>
@@ -70,19 +70,19 @@ if ( 'grid' === $blog_layout ) {
                         
                         <?php if ( $show_author ) : ?>
                             <span class="byline">
-                                <?php esc_html_e( 'by', 'mec_theme' ); ?> <?php the_author_posts_link(); ?>
+                                <?php esc_html_e( 'by', 'bungaku-theme' ); ?> <?php the_author_posts_link(); ?>
                             </span>
                         <?php endif; ?>
                         
                         <?php if ( $show_comments ) : ?>
                             <span class="comments-link">
-                                <?php mec_theme_comments_link_markup(); ?>
+                                <?php bungaku_theme_comments_link_markup(); ?>
                             </span>
                         <?php endif; ?>
                         
                         <?php if ( $show_categories ) : ?>
                             <span class="cat-links">
-                                <?php esc_html_e( 'in', 'mec_theme' ); ?> <?php the_category( ', ' ); ?>
+                                <?php esc_html_e( 'in', 'bungaku-theme' ); ?> <?php the_category( ', ' ); ?>
                             </span>
                         <?php endif; ?>
                     </div><!-- .entry-meta -->
@@ -96,14 +96,14 @@ if ( 'grid' === $blog_layout ) {
                 the_content( sprintf(
                     wp_kses(
                         /* translators: %s: post title (screen-reader only) */
-                        __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'mec_theme' ),
+                        __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'bungaku-theme' ),
                         array( 'span' => array( 'class' => array() ) )
                     ),
                     the_title( '<span class="screen-reader-text">"', '"</span>', false )
                 ) );
                 
                 wp_link_pages( array(
-                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mec_theme' ),
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bungaku-theme' ),
                     'after'  => '</div>',
                 ) );
                 

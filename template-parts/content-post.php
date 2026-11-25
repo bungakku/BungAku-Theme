@@ -14,10 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * content-blog.php (the blog-listing template part), so a single post
  * page now respects the same settings a blog listing already did.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
-$show_meta = get_theme_mod( 'mec_theme_show_post_meta', 'show' );
+$show_meta = get_theme_mod( 'bungaku_theme_show_post_meta', 'show' );
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -31,10 +31,10 @@ $show_meta = get_theme_mod( 'mec_theme_show_post_meta', 'show' );
 
     <header class="entry-header">
         <?php
-        if ( mec_theme_should_show_title() ) {
+        if ( bungaku_theme_should_show_title() ) {
             printf(
                 '<h1 class="entry-title entry-title--align-%s">',
-                esc_attr( mec_theme_get_title_align() )
+                esc_attr( bungaku_theme_get_title_align() )
             );
             the_title();
             echo '</h1>';
@@ -49,10 +49,10 @@ $show_meta = get_theme_mod( 'mec_theme_show_post_meta', 'show' );
             if ( 'hide' === $show_meta ) {
                 $show_date = $show_author = $show_comments = $show_categories = false;
             } elseif ( 'custom' === $show_meta ) {
-                $show_date = get_theme_mod( 'mec_theme_show_post_date', true );
-                $show_author = get_theme_mod( 'mec_theme_show_post_author', true );
-                $show_comments = get_theme_mod( 'mec_theme_show_post_comments', true );
-                $show_categories = get_theme_mod( 'mec_theme_show_post_categories', false );
+                $show_date = get_theme_mod( 'bungaku_theme_show_post_date', true );
+                $show_author = get_theme_mod( 'bungaku_theme_show_post_author', true );
+                $show_comments = get_theme_mod( 'bungaku_theme_show_post_comments', true );
+                $show_categories = get_theme_mod( 'bungaku_theme_show_post_categories', false );
             }
 
             if ( $show_date || $show_author || $show_comments || $show_categories ) : ?>
@@ -65,19 +65,19 @@ $show_meta = get_theme_mod( 'mec_theme_show_post_meta', 'show' );
 
                     <?php if ( $show_author ) : ?>
                         <span class="byline">
-                            <?php esc_html_e( 'by', 'mec_theme' ); ?> <?php the_author_posts_link(); ?>
+                            <?php esc_html_e( 'by', 'bungaku-theme' ); ?> <?php the_author_posts_link(); ?>
                         </span>
                     <?php endif; ?>
 
                     <?php if ( $show_comments ) : ?>
                         <span class="comments-link">
-                            <?php mec_theme_comments_link_markup(); ?>
+                            <?php bungaku_theme_comments_link_markup(); ?>
                         </span>
                     <?php endif; ?>
 
                     <?php if ( $show_categories ) : ?>
                         <span class="cat-links">
-                            <?php esc_html_e( 'in', 'mec_theme' ); ?> <?php the_category( ', ' ); ?>
+                            <?php esc_html_e( 'in', 'bungaku-theme' ); ?> <?php the_category( ', ' ); ?>
                         </span>
                     <?php endif; ?>
                 </div><!-- .entry-meta -->
@@ -90,14 +90,14 @@ $show_meta = get_theme_mod( 'mec_theme_show_post_meta', 'show' );
         the_content( sprintf(
             wp_kses(
                 /* translators: %s: post title (screen-reader only) */
-                __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'mec_theme' ),
+                __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'bungaku-theme' ),
                 array( 'span' => array( 'class' => array() ) )
             ),
             the_title( '<span class="screen-reader-text">"', '"</span>', false )
         ) );
 
         wp_link_pages( array(
-            'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mec_theme' ),
+            'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bungaku-theme' ),
             'after'  => '</div>',
         ) );
         ?>

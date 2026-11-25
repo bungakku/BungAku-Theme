@@ -31,7 +31,7 @@ jobs:
 
       - name: Assemble clean theme folder
         run: |
-          mkdir -p build/mec_theme
+          mkdir -p build/bungaku-theme
           rsync -av \
             --exclude='.git' \
             --exclude='.github' \
@@ -41,23 +41,23 @@ jobs:
             --exclude='node_modules' \
             --exclude='*.zip' \
             --exclude='build' \
-            ./ build/mec_theme/
+            ./ build/bungaku-theme/
 
       - name: Sync style.css Version and readme.txt Stable tag to the tag
         run: |
-          sed -i "s/^Version:.*/Version: ${{ steps.tag.outputs.number }}/" build/mec_theme/style.css
-          if [ -f build/mec_theme/readme.txt ]; then
-            sed -i "s/^Stable tag:.*/Stable tag: ${{ steps.tag.outputs.number }}/" build/mec_theme/readme.txt
+          sed -i "s/^Version:.*/Version: ${{ steps.tag.outputs.number }}/" build/bungaku-theme/style.css
+          if [ -f build/bungaku-theme/readme.txt ]; then
+            sed -i "s/^Stable tag:.*/Stable tag: ${{ steps.tag.outputs.number }}/" build/bungaku-theme/readme.txt
           fi
 
       - name: Create versioned zip
         run: |
           cd build
-          zip -r "mec_theme-${{ steps.tag.outputs.name }}.zip" mec_theme
+          zip -r "bungaku-theme-${{ steps.tag.outputs.name }}.zip" bungaku-theme
 
       - name: Create or update the release and attach the zip
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.name }}
           generate_release_notes: true
-          files: build/mec_theme-${{ steps.tag.outputs.name }}.zip
+          files: build/bungaku-theme-${{ steps.tag.outputs.name }}.zip

@@ -1,11 +1,28 @@
 # Changelog
 
-All notable changes to **MEC Theme** are documented in this file.
+All notable changes to **BungAku-Theme** (formerly **Mec_Theme**) are documented in this file. Entries up to `1.7.98` were published under the name Mec_Theme and are kept unchanged.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows a `1.MAJOR.MINOR` scheme specific to this theme's release history (not strict [Semantic Versioning](https://semver.org/)).
 
 > **Note:** `1.6.2` and `1.7.25` do not appear below. Both are confirmed-absent version numbers (skipped during development, not lost changelog entries) — cross-checked against the historical record.
+
+## [1.7.99]
+
+### Changed
+- **The theme is now BungAku-Theme (formerly Mec_Theme).** This release only renames; no template, style or setting behaviour changes.
+  - Theme Name `BungAku-Theme`, folder and text domain `bungaku-theme`, repository `bungakku/BungAku-Theme` (GitHub redirects the old URL), release zip `bungaku-theme-vX.Y.Z.zip` with the root folder `bungaku-theme`. The updater and the release workflow point to the new repository and zip name.
+  - PHP prefixes `mec_theme_` to `bungaku_theme_`, constants `MEC_THEME_` to `BUNGAKU_THEME_`, the widget class to `BungAku_Theme_Recent_Posts_Widget`, script and style handles `mec-theme-*` to `bungaku-theme-*`. This includes the Customizer setting, section and panel ids, the per-page title post meta, the widget id and the updater transients. CSS classes and `--mec-*` custom properties are unchanged.
+  - The description, readme and screenshot no longer mention Mount Everest College.
+- **Upgrade note:** WordPress stores Customizer settings and widgets per theme folder, so a site that switches from `mec_theme` to `bungaku-theme` starts with default settings and widgets and must re-enter them.
+
+### Notes
+- Compared with v1.7.98 on a WordPress 7.2 sandbox (PHP 8.3): 30 served pages (10 views, each with a posts front page, a static front page and RTL) are identical once the new names are mapped, with a menu with a sub-menu, a Recent Posts widget, contact details, social icons and the login button present; 0 PHP messages.
+- Customizer: 140 settings, 140 controls, 18 sections and 4 panels as before; every sanitize and validate callback and all 73 string hook callbacks resolve; 20 of 20 live-preview settings change the preview; an invalid email, a `javascript:` URL and a content width of 95% are blocked (3 of 3); a 7-setting batch saves and reads back the same as in v1.7.98.
+- Mobile menu at 375px: opens, expands a sub-menu, closes with Esc and with the close button; 0 JS errors, 0 horizontal overflow; same as v1.7.98.
+- Updater, with mocked GitHub data: requests `bungakku/BungAku-Theme` and installs into `bungaku-theme` for both zip shapes (release asset and GitHub zipball). The v1.7.98 updater on an installed `mec_theme` would put the same package into the `mec_theme` folder, so move an existing site by installing `bungaku-theme` as a new theme and deleting `mec_theme`, not with "Update now".
+- `screenshot.png` is a new 1200x900 image taken from the sandbox with sample content.
+- Not measured: a real GitHub release or redirect, Firefox, Safari, real devices.
 
 ## [1.7.98]
 

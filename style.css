@@ -1,13 +1,13 @@
 /*
-Theme Name: MEC_Theme
-Theme URI: https://github.com/bungakku/Mec_Theme
+Theme Name: BungAku-Theme
+Theme URI: https://github.com/bungakku/BungAku-Theme
 Author: Biswajit Thokchom
 Author URI: https://github.com/bungakku
-Description: A lightweight theme by Biswajit for Mount Everest College. Fully responsive with mobile-optimized navigation and design.
-Version: 1.7.98
+Description: A lightweight theme by Biswajit for educational institutions, blogs and business websites (formerly Mec_Theme). Fully responsive with mobile-optimized navigation and design.
+Version: 1.7.99
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: mec_theme
+Text Domain: bungaku-theme
 Tags: blog, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, two-columns, right-sidebar, responsive-layout, sticky-header, grid-layout
 */
 
@@ -36,7 +36,7 @@ Tags: blog, custom-logo, custom-menu, featured-images, threaded-comments, transl
     /* Fixed in 1.7.58: these two were the only dropdown-related variables
        in this block with no static fallback (--mec-dropdown-bg and
        --mec-dropdown-hover-bg above already have one). Values match the
-       PHP-side defaults in mec_theme_get_root_variables_css(). */
+       PHP-side defaults in bungaku_theme_get_root_variables_css(). */
     --mec-dropdown-text: #3a3a3a;
     --mec-dropdown-hover-text: #0274be;
     --mec-social-icon-size: 36px;

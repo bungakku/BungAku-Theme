@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * The template for displaying search results
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 get_header();
@@ -20,7 +20,7 @@ get_header();
                         <?php
                         printf(
                             /* translators: %s: search query */
-                            esc_html__( 'Search Results for: %s', 'mec_theme' ),
+                            esc_html__( 'Search Results for: %s', 'bungaku-theme' ),
                             '<span>' . esc_html( get_search_query() ) . '</span>'
                         );
                         ?>
@@ -28,8 +28,8 @@ get_header();
                 </header><!-- .page-header -->
 
                 <?php
-                $blog_layout = get_theme_mod( 'mec_theme_blog_layout', 'classic' );
-                $grid_columns = get_theme_mod( 'mec_theme_grid_columns', '2' );
+                $blog_layout = get_theme_mod( 'bungaku_theme_blog_layout', 'classic' );
+                $grid_columns = get_theme_mod( 'bungaku_theme_grid_columns', '2' );
 
                 if ( 'grid' === $blog_layout ) {
                     echo '<div class="blog-grid grid-columns-' . esc_attr( $grid_columns ) . '">';
@@ -48,8 +48,8 @@ get_header();
 
                 the_posts_pagination( array(
                     'mid_size'  => 2,
-                    'prev_text' => '&laquo; ' . __( 'Previous', 'mec_theme' ),
-                    'next_text' => __( 'Next', 'mec_theme' ) . ' &raquo;',
+                    'prev_text' => '&laquo; ' . __( 'Previous', 'bungaku-theme' ),
+                    'next_text' => __( 'Next', 'bungaku-theme' ) . ' &raquo;',
                 ) );
 
             else :

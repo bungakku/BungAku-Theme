@@ -1,9 +1,9 @@
-=== MEC Theme ===
+=== BungAku-Theme ===
 Contributors: Biswajit Thokchom
 Tags: blog, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, two-columns, right-sidebar, responsive-layout, sticky-header, grid-layout, block-editor-support, accessibility-ready
 Requires at least: 5.0
 Tested up to: 7.1
-Stable tag: 1.7.98
+Stable tag: 1.7.99
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Author URl:  https://github.com/bungakku
@@ -12,7 +12,7 @@ A lightweight, fully responsive WordPress theme for educational institutions, bl
 
 == Description ==
 
-MEC Theme is a modern, flexible WordPress theme initially designed for Mount Everest College. It offers a clean design, mobile-first approach, and a wealth of customization settings without needing to touch code.
+BungAku-Theme (formerly Mec_Theme) is a modern, flexible WordPress theme for educational institutions, blogs and business websites. It offers a clean design, mobile-first approach, and a wealth of customization settings without needing to touch code.
 
 == Key Features ==
 
@@ -50,7 +50,7 @@ Yes, under Customize > Layout Settings > Header, you'll find checkboxes to hide 
 Go to Customize > Blog Settings > Blog Layout and select "Grid Layout". Then choose the number of columns.
 
 = How do I use the custom recent posts widget? =
-Go to Appearance > Widgets and add the widget titled "MEC Recent Posts (with excerpt)". You can show/hide thumbnail, excerpt, and read more link.
+Go to Appearance > Widgets and add the widget titled "BungAku Recent Posts (with excerpt)". You can show/hide thumbnail, excerpt, and read more link.
 
 = Can I align the tagline differently? =
 Yes – go to Customize > Layout Settings > Header and choose Tagline Alignment (left, center, or right). Default is centre for backward compatibility.
@@ -59,6 +59,13 @@ Yes – go to Customize > Layout Settings > Header and choose Tagline Alignment 
 Yes, the theme includes aria-expanded states for mobile menu and submenu toggles, focus management when opening/closing the menu, a skip-to-content link, keyboard-reachable desktop dropdown submenus, a visible keyboard focus indicator on the mobile menu button, and screen-reader-friendly comment counts.
 
 == Changelog ==
+
+= 1.7.99 =
+* Changed: the theme is now BungAku-Theme (formerly Mec_Theme). This release only renames; no template, style or setting behaviour changes.
+* Changed: Theme Name `BungAku-Theme`; folder and text domain `bungaku-theme`; repository `bungakku/BungAku-Theme` (GitHub redirects the old URL); release zip `bungaku-theme-vX.Y.Z.zip` with the root folder `bungaku-theme`.
+* Changed: PHP prefixes `mec_theme_` to `bungaku_theme_`, constants `MEC_THEME_` to `BUNGAKU_THEME_`, the widget class to `BungAku_Theme_Recent_Posts_Widget`, script and style handles `mec-theme-*` to `bungaku-theme-*`. This includes the Customizer setting, section and panel ids, the per-page title post meta, the widget id and the updater transients. CSS classes and `--mec-*` custom properties are unchanged.
+* Changed: the description, readme and screenshot no longer mention Mount Everest College.
+* Note: WordPress stores Customizer settings and widgets per theme folder, so a site that switches from `mec_theme` to `bungaku-theme` starts with default settings and widgets and must re-enter them. To move an existing site, install `bungaku-theme` as a new theme and delete `mec_theme`; "Update now" would install the new package into the `mec_theme` folder.
 
 = 1.7.98 =
 * Fixed: on a tablet (481px to 768px) and a desktop (769px and up) the logo was centred on the whole block of site title, tagline and description, so once a description was shown a logo shorter than that block sat below the title line instead of level with it. The logo now starts level with the title, as it already does on a phone since 1.7.97. A logo taller than the text block stays where it was.

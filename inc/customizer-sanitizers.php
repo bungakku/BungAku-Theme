@@ -6,44 +6,44 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Whitelist sanitizers and validators used by every Customizer setting
  * in this theme.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
-function mec_theme_sanitize_text_align( $input ) {
+function bungaku_theme_sanitize_text_align( $input ) {
     $valid = array( 'left', 'center', 'right' );
     return in_array( $input, $valid, true ) ? $input : 'left';
 }
 
-function mec_theme_sanitize_sidebar_position( $input ) {
+function bungaku_theme_sanitize_sidebar_position( $input ) {
     $valid = array( 'left', 'right' );
     return in_array( $input, $valid, true ) ? $input : 'right';
 }
 
-function mec_theme_sanitize_logo_position( $input ) {
+function bungaku_theme_sanitize_logo_position( $input ) {
     $valid = array( 'left', 'right', 'top', 'bottom' );
     return in_array( $input, $valid, true ) ? $input : 'left';
 }
 
-function mec_theme_sanitize_footer_columns( $input ) {
+function bungaku_theme_sanitize_footer_columns( $input ) {
     $valid = array( '1', '2', '3', '4' );
     return in_array( $input, $valid, true ) ? $input : '4';
 }
 
-function mec_theme_sanitize_footer_direction( $input ) {
+function bungaku_theme_sanitize_footer_direction( $input ) {
     $valid = array( 'horizontal', 'vertical' );
     return in_array( $input, $valid, true ) ? $input : 'horizontal';
 }
 
-function mec_theme_sanitize_float( $input ) {
+function bungaku_theme_sanitize_float( $input ) {
     return floatval( $input );
 }
 
-function mec_theme_sanitize_blog_layout( $input ) {
+function bungaku_theme_sanitize_blog_layout( $input ) {
     $valid = array( 'classic', 'grid', 'list' );
     return in_array( $input, $valid, true ) ? $input : 'classic';
 }
 
-function mec_theme_sanitize_body_font_family( $input ) {
+function bungaku_theme_sanitize_body_font_family( $input ) {
     $valid = array(
         'default',
         'Arial, sans-serif',
@@ -60,7 +60,7 @@ function mec_theme_sanitize_body_font_family( $input ) {
     return in_array( $input, $valid, true ) ? $input : 'default';
 }
 
-function mec_theme_sanitize_heading_font_family( $input ) {
+function bungaku_theme_sanitize_heading_font_family( $input ) {
     $valid = array(
         'default',
         'Arial, sans-serif',
@@ -77,32 +77,32 @@ function mec_theme_sanitize_heading_font_family( $input ) {
     return in_array( $input, $valid, true ) ? $input : 'default';
 }
 
-function mec_theme_sanitize_grid_columns( $input ) {
+function bungaku_theme_sanitize_grid_columns( $input ) {
     $valid = array( '2', '3', '4' );
     return in_array( $input, $valid, true ) ? $input : '2';
 }
 
-function mec_theme_sanitize_show_hide( $input ) {
+function bungaku_theme_sanitize_show_hide( $input ) {
     $valid = array( 'show', 'hide' );
     return in_array( $input, $valid, true ) ? $input : 'show';
 }
 
-function mec_theme_sanitize_image_size( $input ) {
+function bungaku_theme_sanitize_image_size( $input ) {
     $valid = array( 'thumbnail', 'medium', 'large', 'full' );
     return in_array( $input, $valid, true ) ? $input : 'large';
 }
 
-function mec_theme_sanitize_post_meta( $input ) {
+function bungaku_theme_sanitize_post_meta( $input ) {
     $valid = array( 'show', 'hide', 'custom' );
     return in_array( $input, $valid, true ) ? $input : 'show';
 }
 
-function mec_theme_sanitize_content_display( $input ) {
+function bungaku_theme_sanitize_content_display( $input ) {
     $valid = array( 'excerpt', 'full', 'none' );
     return in_array( $input, $valid, true ) ? $input : 'excerpt';
 }
 
-function mec_theme_sanitize_color_transparent( $input ) {
+function bungaku_theme_sanitize_color_transparent( $input ) {
     if ( 'transparent' === $input ) {
         return 'transparent';
     }
@@ -118,10 +118,10 @@ function mec_theme_sanitize_color_transparent( $input ) {
  * empty string -- or quietly rewrote it ("a b@c.com" became "ab@c.com") --
  * at save time, so the field just appeared not to save.
  */
-function mec_theme_validate_email( $validity, $value ) {
+function bungaku_theme_validate_email( $validity, $value ) {
     $value = trim( (string) $value );
     if ( '' !== $value && ! is_email( $value ) ) {
-        $validity->add( 'invalid_email', __( 'Please enter a valid email address.', 'mec_theme' ) );
+        $validity->add( 'invalid_email', __( 'Please enter a valid email address.', 'bungaku-theme' ) );
     }
     return $validity;
 }
@@ -136,14 +136,14 @@ function mec_theme_validate_email( $validity, $value ) {
  * mailto:/ftp: links were accepted as "social" URLs. Already-saved values
  * are unaffected -- validation only runs when a value is changed.
  */
-function mec_theme_validate_url( $validity, $value ) {
+function bungaku_theme_validate_url( $validity, $value ) {
     $value = trim( (string) $value );
     if ( '' === $value ) {
         return $validity;
     }
     $host = wp_parse_url( $value, PHP_URL_HOST );
     if ( ! preg_match( '#^https?://#i', $value ) || preg_match( '/\s/', $value ) || empty( $host ) || false === strpos( $host, '.' ) ) {
-        $validity->add( 'invalid_url', __( 'Please enter a valid URL starting with http:// or https://.', 'mec_theme' ) );
+        $validity->add( 'invalid_url', __( 'Please enter a valid URL starting with http:// or https://.', 'bungaku-theme' ) );
     }
     return $validity;
 }
@@ -166,11 +166,11 @@ function mec_theme_validate_url( $validity, $value ) {
  * value it returns, which would re-enter this callback for the other
  * setting and recurse endlessly whenever both fields carry pending values.
  */
-function mec_theme_validate_layout_widths( $validity, $value, $setting ) {
-    if ( 'mec_theme_content_width' === $setting->id ) {
-        $other_id = 'mec_theme_sidebar_width';
-    } elseif ( 'mec_theme_sidebar_width' === $setting->id ) {
-        $other_id = 'mec_theme_content_width';
+function bungaku_theme_validate_layout_widths( $validity, $value, $setting ) {
+    if ( 'bungaku_theme_content_width' === $setting->id ) {
+        $other_id = 'bungaku_theme_sidebar_width';
+    } elseif ( 'bungaku_theme_sidebar_width' === $setting->id ) {
+        $other_id = 'bungaku_theme_content_width';
     } else {
         return $validity;
     }
@@ -184,7 +184,7 @@ function mec_theme_validate_layout_widths( $validity, $value, $setting ) {
     }
 
     if ( ( absint( $value ) + absint( $other_value ) ) > 100 ) {
-        $validity->add( 'width_exceeds_limit', __( 'Content width and sidebar width must not exceed 100%. Please adjust your values.', 'mec_theme' ) );
+        $validity->add( 'width_exceeds_limit', __( 'Content width and sidebar width must not exceed 100%. Please adjust your values.', 'bungaku-theme' ) );
     }
 
     return $validity;

@@ -1,9 +1,9 @@
-# Copyright (C) 2026 MEC_Theme
+# Copyright (C) 2026 BungAku-Theme
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MEC_Theme 1.7.98\n"
-"Report-Msgid-Bugs-To: https://github.com/bungakku/Mec_Theme/issues\n"
+"Project-Id-Version: BungAku-Theme 1.7.99\n"
+"Report-Msgid-Bugs-To: https://github.com/bungakku/BungAku-Theme/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "POT-Creation-Date: 2026-10-06 23:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: manually generated\n"
-"X-Domain: mec_theme\n"
+"X-Domain: bungaku-theme\n"
 
 #: 404.php:17
 msgid "Oops! That page can’t be found."
@@ -132,32 +132,32 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: functions.php:300
+#: functions.php:316
 msgid "0 Comments"
 msgstr ""
 
-#: functions.php:301
+#: functions.php:317
 msgid "0 comments"
 msgstr ""
 
-#: functions.php:303
+#: functions.php:319
 msgid "1 Comment"
 msgstr ""
 
-#: functions.php:304
+#: functions.php:320
 msgid "1 comment"
 msgstr ""
 
-#: functions.php:307
+#: functions.php:323
 msgid "%s Comments"
 msgstr ""
 
-#: functions.php:309
+#: functions.php:325
 msgid "%s comments"
 msgstr ""
 
-#: functions.php:360
-msgid "Your WordPress version is outdated. MEC_Theme requires WordPress 5.0 or newer for full functionality."
+#: functions.php:376
+msgid "Your WordPress version is outdated. BungAku-Theme requires WordPress 5.0 or newer for full functionality."
 msgstr ""
 
 #: header.php:30
@@ -193,7 +193,7 @@ msgid "Close menu"
 msgstr ""
 
 #: inc/class-recent-posts-widget.php:16
-msgid "MEC Recent Posts (with excerpt)"
+msgid "BungAku Recent Posts (with excerpt)"
 msgstr ""
 
 #: inc/class-recent-posts-widget.php:18

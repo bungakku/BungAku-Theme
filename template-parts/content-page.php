@@ -3,14 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Template part for displaying page content in page.php
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php if ( mec_theme_should_show_title() ) : ?>
+    <?php if ( bungaku_theme_should_show_title() ) : ?>
     <header class="entry-header">
-        <?php the_title( '<h1 class="entry-title entry-title--align-' . esc_attr( mec_theme_get_title_align() ) . '">', '</h1>' ); ?>
+        <?php the_title( '<h1 class="entry-title entry-title--align-' . esc_attr( bungaku_theme_get_title_align() ) . '">', '</h1>' ); ?>
     </header><!-- .entry-header -->
     <?php endif; ?>
 
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         the_content();
 
         wp_link_pages( array(
-            'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mec_theme' ),
+            'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bungaku-theme' ),
             'after'  => '</div>',
         ) );
         ?>

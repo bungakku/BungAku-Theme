@@ -3,7 +3,7 @@
  * Handles mobile menu toggling (off-canvas panel) and submenu dropdowns.
  * Includes aria-expanded for submenu parents and focus management.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 (function() {
     'use strict';
@@ -17,7 +17,7 @@
         const closeBtn = document.querySelector('.mobile-menu-close');
         const backdrop = document.querySelector('.mobile-menu-backdrop');
 
-        const vars = window.mecThemeVars || {};
+        const vars = window.bungakuThemeVars || {};
         const defaultMenuText = vars.menuText || 'Menu';
         const defaultCloseText = vars.closeText || 'Close';
 

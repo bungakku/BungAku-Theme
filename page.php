@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * The template for displaying all pages
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 get_header(); ?>

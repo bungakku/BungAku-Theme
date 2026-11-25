@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * used elsewhere in the theme, and relies on the html5 'comment-list' /
  * 'comment-form' theme support already declared in functions.php.
  *
- * @package MEC_Theme
+ * @package BungAku_Theme
  */
 
 if ( post_password_required() ) {
@@ -28,7 +28,7 @@ if ( post_password_required() ) {
             $comment_count = get_comments_number();
             printf(
                 /* translators: %s: number of comments */
-                esc_html( _n( '%s Comment', '%s Comments', $comment_count, 'mec_theme' ) ),
+                esc_html( _n( '%s Comment', '%s Comments', $comment_count, 'bungaku-theme' ) ),
                 esc_html( number_format_i18n( $comment_count ) )
             );
             ?>
@@ -45,14 +45,14 @@ if ( post_password_required() ) {
         </ol>
 
         <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-            <nav class="comment-navigation" aria-label="<?php esc_attr_e( 'Comments Navigation', 'mec_theme' ); ?>">
-                <div class="nav-previous"><?php previous_comments_link( '&laquo; ' . esc_html__( 'Older Comments', 'mec_theme' ) ); ?></div>
-                <div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'mec_theme' ) . ' &raquo;' ); ?></div>
+            <nav class="comment-navigation" aria-label="<?php esc_attr_e( 'Comments Navigation', 'bungaku-theme' ); ?>">
+                <div class="nav-previous"><?php previous_comments_link( '&laquo; ' . esc_html__( 'Older Comments', 'bungaku-theme' ) ); ?></div>
+                <div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'bungaku-theme' ) . ' &raquo;' ); ?></div>
             </nav><!-- .comment-navigation -->
         <?php endif; ?>
 
         <?php if ( ! comments_open() ) : ?>
-            <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'mec_theme' ); ?></p>
+            <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'bungaku-theme' ); ?></p>
         <?php endif; ?>
 
     <?php endif; // have_comments() ?>
