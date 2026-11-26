@@ -3,7 +3,7 @@ Contributors: Biswajit Thokchom
 Tags: blog, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, two-columns, right-sidebar, responsive-layout, sticky-header, grid-layout, block-editor-support, accessibility-ready
 Requires at least: 5.0
 Tested up to: 7.1
-Stable tag: 1.7.99
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Author URl:  https://github.com/bungakku
@@ -20,7 +20,8 @@ BungAku-Theme (formerly Mec_Theme) is a modern, flexible WordPress theme for edu
 * Customizer Powered – Change colors, fonts, layouts, and more in real time.
 * Multiple Blog Layouts – Classic, grid (2/3/4 columns), and list views.
 * Sticky Header – Keep your header always visible.
-* Custom Logo & Site Identity – Upload your logo and control its position.
+* Custom Logo & Site Identity – Upload your logo, control its position, or hide it. Without an uploaded logo the bundled BungAku logo mark is shown.
+* Site Title Accent Colour – Show part of the site title in a second colour, with a live preview and contrast warnings.
 * Advanced Typography – Set font sizes per device (desktop/tablet/mobile).
 * Footer Widgets – 1–4 columns, horizontal or vertical arrangement.
 * Author Bio & Related Posts – Automatically displayed on single posts.
@@ -59,6 +60,12 @@ Yes – go to Customize > Layout Settings > Header and choose Tagline Alignment 
 Yes, the theme includes aria-expanded states for mobile menu and submenu toggles, focus management when opening/closing the menu, a skip-to-content link, keyboard-reachable desktop dropdown submenus, a visible keyboard focus indicator on the mobile menu button, and screen-reader-friendly comment counts.
 
 == Changelog ==
+
+= 1.8.0 =
+* Added: Site Title Accent Text and Site Title Accent Color (Customize > Colors). Type the part of the title to show in a second colour, for example "Aku" in BungAku. The first match is used, ignoring case; an empty field keeps the one-colour title as before. The accent colour previews live and the controls warn when the contrast with the header background is below 4.5:1 (large text only) or 3:1, or when the text is not found in the title. The default accent colour is #cc4a0a (4.61:1 on white).
+* Added: the BungAku logo mark is the default logo. A site with no uploaded logo now shows it in the header (192x135 file shown at 96x68); uploading a logo replaces it.
+* Added: Show a logo in the header (Customize > Site Identity). Untick it to hide the logo, whether it is the bundled mark or an uploaded one.
+* Note: sites that have no uploaded logo will show the BungAku logo mark after this update. Untick Show a logo in the header to remove it. Sites with an uploaded logo and an empty Accent Text look the same as in 1.7.99.
 
 = 1.7.99 =
 * Changed: the theme is now BungAku-Theme (formerly Mec_Theme). This release only renames; no template, style or setting behaviour changes.

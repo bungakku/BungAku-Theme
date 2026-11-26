@@ -53,9 +53,8 @@ if ( function_exists( 'wp_body_open' ) ) {
                 ">
                     <div class="logo-text-wrapper">
                         <?php
-                        if ( has_custom_logo() ) {
-                            the_custom_logo();
-                        }
+                        // 1.8.0: uploaded logo, bundled default or none, decided by the get_custom_logo filter (functions.php).
+                        the_custom_logo();
                         ?>
                         <div class="site-text">
                             <?php
@@ -68,9 +67,9 @@ if ( function_exists( 'wp_body_open' ) ) {
                              */
                             if ( is_front_page() || is_home() ) :
                                 ?>
-                                <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                                <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bungaku_theme_the_site_title(); ?></a></h1>
                             <?php else : ?>
-                                <p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+                                <p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bungaku_theme_the_site_title(); ?></a></p>
                             <?php endif; ?>
 
                             <?php

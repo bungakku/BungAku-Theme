@@ -83,7 +83,24 @@ function bungaku_theme_register_layout_panel( $wp_customize ) {
         'title'       => __( 'Header', 'bungaku-theme' ),
         'panel'       => 'bungaku_theme_layout_panel',
     ) );
-    
+
+    // 1.8.0: master switch for the header logo, shown under core's Logo control in Site Identity (see bungaku_theme_custom_logo() in functions.php).
+    $wp_customize->add_setting( 'bungaku_theme_show_logo', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+    $wp_customize->add_control( 'bungaku_theme_show_logo', array(
+        'label'       => __( 'Show a logo in the header', 'bungaku-theme' ),
+        'description' => __( 'Untick to show no logo, whichever one is set above.', 'bungaku-theme' ),
+        'section'     => 'title_tagline',
+        'priority'    => 9,
+        'type'        => 'checkbox',
+    ) );
+    $custom_logo_control = $wp_customize->get_control( 'custom_logo' );
+    if ( $custom_logo_control ) {
+        $custom_logo_control->description = __( 'If you do not upload one, the BungAku logo mark is used.', 'bungaku-theme' );
+    }
+
     $wp_customize->add_setting( 'bungaku_theme_logo_position_desktop', array(
         'default'           => get_theme_mod( 'bungaku_theme_logo_position', 'left' ),
         'sanitize_callback' => 'bungaku_theme_sanitize_logo_position',

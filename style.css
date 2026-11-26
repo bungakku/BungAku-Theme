@@ -4,7 +4,7 @@ Theme URI: https://github.com/bungakku/BungAku-Theme
 Author: Biswajit Thokchom
 Author URI: https://github.com/bungakku
 Description: A lightweight theme by Biswajit for educational institutions, blogs and business websites (formerly Mec_Theme). Fully responsive with mobile-optimized navigation and design.
-Version: 1.7.99
+Version: 1.8.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bungaku-theme
@@ -163,6 +163,16 @@ select {
 
 .site-title a:hover {
     color: var(--mec-primary-color);
+}
+
+/* 1.8.0: accent part of the site title (Customizer > Colors > Site Title Accent Text); the span only exists while that text is set and found in the name. On hover the whole title takes the hover colour, as before. */
+.site-title-accent {
+    color: var(--bungaku-title-accent-color, #cc4a0a);
+    transition: color 0.3s ease;
+}
+
+.site-title a:hover .site-title-accent {
+    color: inherit;
 }
 
 .site-description {

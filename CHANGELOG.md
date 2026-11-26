@@ -7,6 +7,24 @@ Versioning follows a `1.MAJOR.MINOR` scheme specific to this theme's release his
 
 > **Note:** `1.6.2` and `1.7.25` do not appear below. Both are confirmed-absent version numbers (skipped during development, not lost changelog entries) — cross-checked against the historical record.
 
+## [1.8.0]
+
+### Added
+- **Site title accent colour.** Customize > Colors has two new controls. **Site Title Accent Text** is the part of the title to show in a second colour, typed as it appears (for example `Aku` in `BungAku`); **Site Title Accent Color** is its colour (default `#cc4a0a`, 4.61:1 on a white header). The first match is used, ignoring case, and keeps the title's own spelling and casing. An empty field is off: the title is printed exactly as in 1.7.99. It works with multi-word and non-Latin titles and with names that contain an apostrophe or `&`. The accent colour previews live; the controls warn when the contrast with the header background is below 4.5:1 or 3:1, and when the text is not found in the title.
+- **The BungAku logo mark is the default logo.** A site with no uploaded logo now shows the bundled mark in the header (`assets/images/bungaku-logo-mark.png`, a 192x135 file shown at 96x68 for 2x screens). Uploading a logo replaces it.
+- **Show a logo in the header** (Customize > Site Identity). Untick it to hide the logo, whether it is the bundled mark or an uploaded one.
+
+### Notes
+- **Upgrade note:** a site with no uploaded logo shows the BungAku logo mark after this update; untick Show a logo in the header to remove it. A site with an uploaded logo and an empty Accent Text renders as in 1.7.99.
+- Core adds the `wp-custom-logo` body class whenever a logo is set, also when Show a logo in the header is off; no theme CSS uses it.
+- Compared with v1.7.99 on a WordPress 7.2 sandbox (PHP 8.3), 10 views each in 3 states (30 pages per state): with an uploaded logo and the defaults, 30 of 30 identical; with the logo switched off and none uploaded, 30 of 30 identical to the v1.7.99 pages without a logo; with no uploaded logo and the defaults, the only difference is the added logo link.
+- Site title accent: 13 cases checked, including `St Mary's Cathedral` with `Cathedral` and with `mary's`, `A & B College` with `& B`, a Bengali title, `(Aku)`, padded text, markup in the name (escaped) and a repeated word (first match only). A text that is not in the title, or an empty one, prints the plain title.
+- Header at 360, 412, 480, 481, 768, 769 and 1280px, left-to-right and right-to-left: the logo is 96x68, 0 horizontal overflow. With the logo off the header is 27px shorter at 360px (165px against 192px).
+- axe on the header (default logo, accent text `Aku`): 0 violations at 360px and 1280px. With the first draft default `#f9571b` (3.28:1) axe reported 1 contrast violation at 360px, where the title is 20.8px, so the default is `#cc4a0a`.
+- Customizer: 143 settings and 143 controls (140 before), 18 sections, 4 panels, 0 bad callbacks, all 76 string hook callbacks resolve. 16 of 21 live-preview settings change the preview, against 15 of 20 in 1.7.99; the same five social URL settings do not, because the sandbox has no social links. The contrast warning shows 3.28:1 for `#f9571b` on white, 1.19:1 for `#123456` on `#0d254c`.
+- `.pot`: 9 new strings, 114 line references remapped (357 references checked against the source, 0 stale), `Project-Id-Version` 1.8.0.
+- Not measured: uploading a logo through the media modal (the logo was set as a theme mod), Firefox, Safari, real devices.
+
 ## [1.7.99]
 
 ### Changed

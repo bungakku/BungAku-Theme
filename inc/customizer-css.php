@@ -80,7 +80,12 @@ function bungaku_theme_get_root_variables_css() {
     
     $site_title_color = bungaku_theme_get_color_var( 'bungaku_theme_site_title_color', '#333333' );
     $css .= '--mec-site-title-color: ' . $site_title_color . ';';
-    
+
+    // 1.8.0: accent part of the site title, only while the accent text is set (style.css carries the same default as a fallback).
+    if ( '' !== trim( (string) get_theme_mod( 'bungaku_theme_title_accent_text', '' ) ) ) {
+        $css .= '--bungaku-title-accent-color: ' . bungaku_theme_get_color_var( 'bungaku_theme_title_accent_color', '#cc4a0a' ) . ';';
+    }
+
     $site_desc_color = bungaku_theme_get_color_var( 'bungaku_theme_site_description_color', '#666666' );
     $css .= '--mec-site-description-color: ' . $site_desc_color . ';';
     

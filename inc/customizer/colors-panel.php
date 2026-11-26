@@ -31,7 +31,30 @@ function bungaku_theme_register_colors_panel( $wp_customize ) {
         'label'    => __( 'Site Title Color', 'bungaku-theme' ),
         'section'  => 'bungaku_theme_colors_general_section',
     ) ) );
-    
+
+    // 1.8.0: colour one part of the site title differently (empty text = off).
+    $wp_customize->add_setting( 'bungaku_theme_title_accent_text', array(
+        'default'           => '',
+        'sanitize_callback' => 'bungaku_theme_sanitize_title_accent_text',
+    ) );
+    $wp_customize->add_control( 'bungaku_theme_title_accent_text', array(
+        'label'       => __( 'Site Title Accent Text', 'bungaku-theme' ),
+        'description' => __( 'Part of the site title to show in the accent colour, typed as it appears in the title (for example "Aku" in BungAku). Leave empty for a one-colour title.', 'bungaku-theme' ),
+        'section'     => 'bungaku_theme_colors_general_section',
+        'type'        => 'text',
+        'input_attrs' => array( 'maxlength' => 60 ),
+    ) );
+
+    $wp_customize->add_setting( 'bungaku_theme_title_accent_color', array(
+        'default'           => '#cc4a0a',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'postMessage',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'bungaku_theme_title_accent_color', array(
+        'label'    => __( 'Site Title Accent Color', 'bungaku-theme' ),
+        'section'  => 'bungaku_theme_colors_general_section',
+    ) ) );
+
     $wp_customize->add_setting( 'bungaku_theme_site_description_color', array(
         'default'           => '#666666',
         'sanitize_callback' => 'sanitize_hex_color',

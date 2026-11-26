@@ -38,6 +38,13 @@ function bungaku_theme_sanitize_float( $input ) {
     return floatval( $input );
 }
 
+/**
+ * Site title accent text (1.8.0): plain text, at most 60 characters.
+ */
+function bungaku_theme_sanitize_title_accent_text( $input ) {
+    return mb_substr( sanitize_text_field( (string) $input ), 0, 60, 'UTF-8' );
+}
+
 function bungaku_theme_sanitize_blog_layout( $input ) {
     $valid = array( 'classic', 'grid', 'list' );
     return in_array( $input, $valid, true ) ? $input : 'classic';

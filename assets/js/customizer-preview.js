@@ -1,7 +1,7 @@
 /**
  * Customizer preview enhancements for BungAku-Theme
  * Handles live updates for site description hiding on tablet/mobile,
- * and live updates for tagline alignment.
+ * live updates for tagline alignment and the site title accent colour.
  *
  * @package BungAku_Theme
  */
@@ -52,6 +52,13 @@
     api('bungaku_theme_tagline_align', function(setting) {
         updateTaglineAlign(setting.get());
         setting.bind(updateTaglineAlign);
+    });
+
+    // 1.8.0: site title accent colour. The accent text itself refreshes the preview, so the PHP side stays the only place that finds the accent in the name.
+    api('bungaku_theme_title_accent_color', function(setting) {
+        setting.bind(function(value) {
+            document.documentElement.style.setProperty('--bungaku-title-accent-color', value || '#cc4a0a');
+        });
     });
 
 })(jQuery, wp.customize);

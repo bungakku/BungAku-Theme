@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BUNGAKU_THEME_VERSION', '1.7.99' );
+define( 'BUNGAKU_THEME_VERSION', '1.8.0' );
 define( 'BUNGAKU_THEME_DIR', get_template_directory() );
 define( 'BUNGAKU_THEME_URI', get_template_directory_uri() );
 define( 'BUNGAKU_THEME_ASSETS', BUNGAKU_THEME_URI . '/assets' );
@@ -216,6 +216,21 @@ function bungaku_theme_customize_preview_js() {
 add_action( 'customize_preview_init', 'bungaku_theme_customize_preview_js' );
 
 /**
+ * Enqueue Customizer controls script (contrast and accent text warnings, added in 1.8.0)
+ */
+function bungaku_theme_customize_controls_js() {
+    wp_enqueue_script( 'bungaku-theme-customizer-controls', BUNGAKU_THEME_URI . '/assets/js/customizer-controls.js', array( 'customize-controls' ), BUNGAKU_THEME_VERSION, true );
+    wp_localize_script( 'bungaku-theme-customizer-controls', 'bungakuThemeControls', array(
+        /* translators: %s: contrast ratio, for example 3.28 */
+        'contrastLow'   => __( 'Contrast with the header background is %s:1, below the 3:1 minimum for large text. The title may be hard to read.', 'bungaku-theme' ),
+        /* translators: %s: contrast ratio, for example 3.28 */
+        'contrastLarge' => __( 'Contrast with the header background is %s:1: enough for large text only (3:1). Body text needs 4.5:1.', 'bungaku-theme' ),
+        'accentMissing' => __( 'This text was not found in the Site Title, so the title stays one colour.', 'bungaku-theme' ),
+    ) );
+}
+add_action( 'customize_controls_enqueue_scripts', 'bungaku_theme_customize_controls_js' );
+
+/**
  * Add custom classes to body
  */
 function bungaku_theme_body_classes( $classes ) {
@@ -346,6 +361,87 @@ function bungaku_theme_comments_link_markup() {
 function bungaku_theme_get_tel_href( $phone ) {
     return preg_replace( '/[^0-9+]/', '', $phone );
 }
+
+/**
+ * Split the site name around the accent text (Customizer > Colors > Site
+ * Title Accent Text).
+ *
+ * Added in 1.8.0. Returns array( before, accent, after ) cut from the site
+ * name (first match, case-insensitive, the accent keeps the name's own
+ * casing), or null when the accent text is empty or not part of the name,
+ * in which case the title is printed exactly as before. WordPress stores
+ * the site name HTML-escaped (St Mary&#039;s), so it is decoded first and
+ * each part is escaped again when printed.
+ */
+function bungaku_theme_get_site_title_parts() {
+    $accent = trim( (string) get_theme_mod( 'bungaku_theme_title_accent_text', '' ) );
+    if ( '' === $accent ) {
+        return null;
+    }
+
+    $name = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+    if ( ! preg_match( '/' . preg_quote( $accent, '/' ) . '/iu', $name, $match, PREG_OFFSET_CAPTURE ) ) {
+        return null;
+    }
+
+    return array(
+        substr( $name, 0, $match[0][1] ),
+        $match[0][0],
+        substr( $name, $match[0][1] + strlen( $match[0][0] ) ),
+    );
+}
+
+/**
+ * Print the site title text for header.php: the plain site name, or the
+ * name with its accent part wrapped in a span (added in 1.8.0).
+ */
+function bungaku_theme_the_site_title() {
+    $parts = bungaku_theme_get_site_title_parts();
+    if ( null === $parts ) {
+        bloginfo( 'name' );
+        return;
+    }
+
+    foreach ( $parts as $index => $text ) {
+        if ( '' === $text ) {
+            continue;
+        }
+        // Same filters as bloginfo( 'name' ); esc_html() does not double-encode.
+        $text = esc_html( apply_filters( 'bloginfo', $text, 'name' ) );
+        echo ( 1 === $index ) ? '<span class="site-title-accent">' . $text . '</span>' : $text;
+    }
+}
+
+/**
+ * Header logo: the uploaded logo, the bundled default, or none.
+ *
+ * Added in 1.8.0. "Show a logo in the header" off: no logo, whichever one is
+ * uploaded. On with no uploaded logo: the bundled BungAku logo mark. On
+ * with an uploaded logo: core's markup, unchanged. Core's selective refresh
+ * of the logo calls get_custom_logo() too, so the Customizer preview agrees.
+ * Core prints a hidden placeholder in the preview when no logo is set, so
+ * has_custom_logo() is checked rather than an empty string.
+ *
+ * The default is decorative (the site title next to it names the site), so
+ * its link is hidden from assistive technology and the tab order, as the
+ * duplicate thumbnail links are (1.7.95). It is shown at half its 192px
+ * width so it stays sharp on 2x screens.
+ */
+function bungaku_theme_custom_logo( $html, $blog_id = 0 ) {
+    if ( ! get_theme_mod( 'bungaku_theme_show_logo', true ) ) {
+        return '';
+    }
+    if ( has_custom_logo( $blog_id ) ) {
+        return $html;
+    }
+
+    return sprintf(
+        '<a href="%1$s" class="custom-logo-link" rel="home" aria-hidden="true" tabindex="-1"><img src="%2$s" class="custom-logo" alt="" width="96" height="68" decoding="async" /></a>',
+        esc_url( home_url( '/' ) ),
+        esc_url( BUNGAKU_THEME_URI . '/assets/images/bungaku-logo-mark.png' )
+    );
+}
+add_filter( 'get_custom_logo', 'bungaku_theme_custom_logo', 10, 2 );
 
 /**
  * Security: Remove unnecessary head items
